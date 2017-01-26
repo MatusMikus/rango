@@ -10,4 +10,4 @@ def index(request):
 	
 
 def about(request):
-	return HttpResponse("THIS IS AN ABOUT PAGE " + '<a href="/rango/">Home</a>')
+	return render(request, 'rango/about.html')
