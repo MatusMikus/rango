@@ -10,7 +10,6 @@ from datetime import datetime
 
 
 def index(request):
-	request.session.set_test_cookie()
 	category_list = Category.objects.order_by('-likes')[:5]
 	page_list = Page.objects.order_by('-views')[:5]
 	context_dict = {'categories': category_list, 'pages':page_list}
@@ -119,10 +118,10 @@ def user_login(request):
 				login(request, user)
 				return HttpResponseRedirect(reverse('index'))
 			else:
-				return render(request, 'rango/login.html',{'login_message': 'Your Rango account is disabled.'})
+				return render(request, 'rango/login.html',{'login_message': 'disabled'})
 		else:
 			print("Invalid login details: {0}, {1}".format(username, password))
-			return render(request, 'rango/login.html',{'login_message': 'Incorrect username and password'})
+			return render(request, 'rango/login.html',{'login_message': 'invalid'})
 	else:
 		return render(request, 'rango/login.html', {})
 
